@@ -82,4 +82,13 @@ app.post('/api/insert', (req, res)=>{
   });
 });
 
+//delete from db
+app.delete('/api/delete/:id', (req, res) =>{
+  const rowId = req.params.id;
+  const sqlDelete = "DELETE FROM anmeldungen WHERE id = ?";
+  connection.query(sqlDelete, rowId, (err, result)=>{
+    if(err) console.log(err);
+  })
+})
+
 app.listen(PORT, () => console.log(`Server lauft auf port ${PORT}`));
