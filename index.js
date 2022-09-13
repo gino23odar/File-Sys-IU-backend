@@ -91,4 +91,14 @@ app.delete('/api/delete/:id', (req, res) =>{
   })
 })
 
+//update rows in db
+app.put('/api/update/:id', (req, res) =>{
+  const rowId = req.params.id;
+  const rowStat = req.body.Status;
+  const sqlUpdate = "UPDATE anmeldungen SET Status = ? WHERE id = ?";
+  connection.query(sqlUpdate, [rowStat, rowId], (err, result)=>{
+    if(err) console.log(err);
+  })
+})
+
 app.listen(PORT, () => console.log(`Server lauft auf port ${PORT}`));
